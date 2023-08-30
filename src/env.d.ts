@@ -1,0 +1,18 @@
+/// <reference types="vite/client" />
+
+// declare module '*.vue' {
+//   import { type DefineComponent } from 'vue'
+//   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types
+//   const component: DefineComponent<{}, {}, any>
+//   export default component
+// }
+declare module '*vue' {
+  import { ComponentOptions } from 'vue'
+  const ComponentOptions: ComponentOptions
+  export default ComponentOptions
+}
+
+interface Window {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  gtag: (...params: any[]) => void
+}
