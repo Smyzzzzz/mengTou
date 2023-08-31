@@ -3,7 +3,9 @@
     <slot />
 
     <div class="trigger" @click="isCollapsed ? openSider() : closeSider()">
-      <img :src="IconRight" class="icon-right" alt="arrow" />
+      <!--  -->
+      <!-- <img :src="IconRight" class="icon-right" alt="arrow" /> -->
+      <img src="../../assets/icons/Left pink.png" class="icon-right" alt="arrow" style="height: 48px;width: 48px;" />
     </div>
   </aside>
 </template>
@@ -11,6 +13,7 @@
 <script lang="ts" setup>
 import IconRight from '@/assets/icons/icon-right.svg'
 import { useSider } from '@/hooks'
+import { url } from 'inspector';
 
 const { isCollapsed, openSider, closeSider } = useSider()
 </script>
@@ -20,6 +23,8 @@ const { isCollapsed, openSider, closeSider } = useSider()
 
 .sider {
   position: fixed;
+  // 
+  border-radius: 20px 0 0 20px;
   top: 0;
   right: 0;
   z-index: 200;
@@ -51,7 +56,8 @@ const { isCollapsed, openSider, closeSider } = useSider()
     justify-content: center;
     width: 1.2rem;
     height: 4rem;
-    background-color: var.$color-configurator;
+    // background-color: #f4edfc;
+    // var.$color-configurator
     border-radius: 0.4rem 0 0 0.4rem;
     transform: translate(-100%, -50%);
     cursor: pointer;
@@ -59,7 +65,8 @@ const { isCollapsed, openSider, closeSider } = useSider()
 
     &:hover {
       width: 1.5rem;
-      background-color: lighten(var.$color-configurator, 5);
+      // var.$color-configurator
+      // background-color: lighten(#f4edfc, 5);
     }
   }
 }

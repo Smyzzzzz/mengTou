@@ -206,6 +206,9 @@ function switchBgColor(bgColor: string) {
 .configurator {
   width: 100%;
   color: var.$color-text;
+  // 
+  border-radius: 20px 0 0 20px;
+  background-color: #f4edfc;
 
   .wrapper-shape {
     display: flex;
@@ -269,7 +272,9 @@ function switchBgColor(bgColor: string) {
         margin: 0 auto;
         font-size: 16px;
         border-radius: 50%;
-        box-shadow: 0 0 0.05em 0.2em var.$color-configurator;
+        // 0 0 0.05em 0.2em var.$color-configurator
+        box-shadow: 0 0 0.05em 0.2em #dac4f4;
+        // 
 
         &.transparent {
           background: #fff !important;

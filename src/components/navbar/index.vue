@@ -25,6 +25,7 @@ const goNext = () => {
   top: 50%;
   left: 0;
   background-color: blanchedalmond;
+  border-radius: 0 20px 20px 0;
   border: 1px solid black;
 
   .go {

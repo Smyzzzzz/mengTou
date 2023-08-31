@@ -16,7 +16,7 @@ import Navbar from '../src/components/navbar/index.vue'
 <style scoped lang="less">
 .main11 {
   min-height: 100vh;
-  background-color: black;
+  background-color: #ffe5ea;
 }
 </style>
 
