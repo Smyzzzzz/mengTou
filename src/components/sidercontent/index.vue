@@ -27,7 +27,7 @@
         </div>
       </SectionWrapper>
 
-      <!-- <SectionWrapper v-for="s in sections" :key="s.widgetType" :title="t(`widgetType.${s.widgetType}`)">
+      <SectionWrapper v-for="s in sections" :key="s.widgetType" :title="t(`widgetType.${s.widgetType}`)">
         <details v-if="s.widgetType === WidgetType.Tops ||
           s.widgetType === WidgetType.Face ||
           s.widgetType === WidgetType.Clothes
@@ -50,7 +50,7 @@
               it.widgetShape === avatarOption.widgets?.[s.widgetType]?.shape,
           }" @click="switchWidget(s.widgetType, it.widgetShape)" v-html="it.svgRaw" />
         </ul>
-      </SectionWrapper> -->
+      </SectionWrapper>
     </div>
   </PerfectScrollbar>
 </template>
@@ -62,75 +62,75 @@ import { useI18n } from 'vue-i18n'
 // import PerfectScrollbar from '../../components/sidercontent'
 import SectionWrapper from '@/components/sidercontent/SectionWrapper.vue'
 import {
-  // type WidgetShape,
+  type WidgetShape,
   type WrapperShape,
   // BeardShape,
-  // WidgetType,
+  WidgetType,
 } from '../../enums'
 import useAvatarOption from '../../hooks/useAvatarOption'
 // @/utils/constant
 import { //AVATAR_LAYER, 
   SETTINGS
 } from '../../utils/constant'
-// import { previewData } from '@/utils/dynamic-data'
+import { previewData } from '@/utils/dynamic-data'
 
 const { t } = useI18n()
 
 const [avatarOption, setAvatarOption] = useAvatarOption()
 
-// const sectionList = reactive(Object.values(WidgetType))
+const sectionList = reactive(Object.values(WidgetType))
 const sections = ref<
   {
     // widgetType: WidgetType
     widgetList: {
-      // widgetType: WidgetType
-      // widgetShape: WidgetShape
-      svgRaw: string
+      widgetType: WidgetType
+      widgetShape: WidgetShape
+      // svgRaw: string
     }[]
   }[]
 >([])
 
-// onMounted(() => {
-//   void (async () => {
-//     const a = await Promise.all(
-//       sectionList.map((section) => {
-//         // 
-//         return getWidgets(section)
-//       })
-//     )
+onMounted(() => {
+  void (async () => {
+    const a = await Promise.all(
+      sectionList.map((section) => {
+        // 
+        return getWidgets(section)
+      })
+    )
 
-//     sections.value = sectionList.map((li, i) => {
-//       return {
-//         widgetType: li,
-//         widgetList: a[i],
-//       }
-//     })
-//   })()
-// })
+    sections.value = sectionList.map((li, i) => {
+      return {
+        widgetType: li,
+        widgetList: a[i],
+      }
+    })
+  })()
+})
 
-// async function getWidgets(widgetType: WidgetType) {
-//   const list = SETTINGS[`${widgetType}Shape`]
-//   // const promises: Promise<string>[] = list.map(async (widget: string) => {
-//   //   return (await import(`../assets/preview/${widgetType}/${widget}.svg?raw`))
-//   //     .default
-//   // })
-//   const promises: Promise<string>[] = list.map(async (widget: string) => {
-//     if (widget !== 'none' && previewData?.[widgetType]?.[widget]) {
-//       return (await previewData[widgetType][widget]()).default
-//     }
-//     return 'X'
-//   })
-//   const svgRawList = await Promise.all(promises).then((raw) => {
-//     return raw.map((svgRaw, i) => {
-//       return {
-//         widgetType,
-//         widgetShape: list[i],
-//         svgRaw,
-//       }
-//     })
-//   })
-//   return svgRawList
-// }
+async function getWidgets(widgetType: WidgetType) {
+  const list = SETTINGS[`${widgetType}Shape`]
+  // const promises: Promise<string>[] = list.map(async (widget: string) => {
+  //   return (await import(`../assets/preview/${widgetType}/${widget}.svg?raw`))
+  //     .default
+  // })
+  const promises: Promise<string>[] = list.map(async (widget: string) => {
+    if (widget !== 'none' && previewData?.[widgetType]?.[widget]) {
+      return (await previewData[widgetType][widget]()).default
+    }
+    return 'X'
+  })
+  const svgRawList = await Promise.all(promises).then((raw) => {
+    return raw.map((svgRaw, i) => {
+      return {
+        widgetType,
+        widgetShape: list[i],
+        svgRaw,
+      }
+    })
+  })
+  return svgRawList
+}
 
 function switchWrapperShape(wrapperShape: WrapperShape) {
   if (wrapperShape !== avatarOption.value.wrapperShape) {

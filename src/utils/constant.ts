@@ -1,44 +1,44 @@
 import type { AvatarOption, AvatarSettings } from '@/types'
 
-import { WrapperShape } from '../enums'
+import { WrapperShape, EarShape, WidgetType } from '../enums'
 
-// export const AVATAR_LAYER: Readonly<{
-//   [key in `${WidgetType}`]: { zIndex: number }
-// }> = {
-//   [WidgetType.Face]: {
-//     zIndex: 10,
-//   },
-//   [WidgetType.Ear]: {
-//     zIndex: 102,
-//   },
-//   [WidgetType.Earrings]: {
-//     zIndex: 103,
-//   },
-//   [WidgetType.Eyebrows]: {
-//     zIndex: 70,
-//   },
-//   [WidgetType.Eyes]: {
-//     zIndex: 50,
-//   },
-//   [WidgetType.Nose]: {
-//     zIndex: 60,
-//   },
-//   [WidgetType.Glasses]: {
-//     zIndex: 90,
-//   },
-//   [WidgetType.Mouth]: {
-//     zIndex: 100,
-//   },
-//   [WidgetType.Beard]: {
-//     zIndex: 105,
-//   },
-//   [WidgetType.Tops]: {
-//     zIndex: 80,
-//   },
-//   [WidgetType.Clothes]: {
-//     zIndex: 110,
-//   },
-// }
+export const AVATAR_LAYER: Readonly<{
+  [key in `${WidgetType}`]: { zIndex: number }
+}> = {
+  [WidgetType.Face]: {
+    zIndex: 10
+  },
+  [WidgetType.Ear]: {
+    zIndex: 102
+  }
+  // [WidgetType.Earrings]: {
+  //   zIndex: 103
+  // },
+  // [WidgetType.Eyebrows]: {
+  //   zIndex: 70
+  // },
+  // [WidgetType.Eyes]: {
+  //   zIndex: 50
+  // },
+  // [WidgetType.Nose]: {
+  //   zIndex: 60
+  // },
+  // [WidgetType.Glasses]: {
+  //   zIndex: 90
+  // },
+  // [WidgetType.Mouth]: {
+  //   zIndex: 100
+  // },
+  // [WidgetType.Beard]: {
+  //   zIndex: 105
+  // },
+  // [WidgetType.Tops]: {
+  //   zIndex: 80
+  // },
+  // [WidgetType.Clothes]: {
+  //   zIndex: 110
+  // }
+}
 
 export const SETTINGS: Readonly<AvatarSettings> = {
   // gender: [Gender.Male, Gender.Female],
@@ -46,7 +46,7 @@ export const SETTINGS: Readonly<AvatarSettings> = {
   wrapperShape: Object.values(WrapperShape),
   // faceShape: Object.values(FaceShape),
   // topsShape: Object.values(TopsShape),
-  // earShape: Object.values(EarShape),
+  earShape: Object.values(EarShape),
   // earringsShape: Object.values(EarringsShape),
   // eyebrowsShape: Object.values(EyebrowsShape),
   // eyesShape: Object.values(EyesShape),

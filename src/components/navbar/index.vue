@@ -1,5 +1,7 @@
 <script  lang="ts" setup>
+import { ref } from "vue";
 import { useRoute, useRouter } from 'vue-router'
+let isCollapsed = ref(true)
 const router = useRouter()
 const route = useRoute()
 const goNext = () => {
@@ -8,33 +10,83 @@ const goNext = () => {
 </script>
 
 <template>
-  <div class="panel">
-    <!-- <div></div> -->
-    <div class="go" @click="goNext">黑白</div>
-    <div class="go" @click="$router.push('/cute')">可爱</div>
-    <div class="go" @click="$router.push('/waterfall')">广场</div>
+  <div class="big-panel">
+    <!--  -->
+    <div class="panel" v-if="!isCollapsed">
+      <!-- <div></div> -->
+      <div class="go" @click="goNext" :class="{ isActive: $route.path == '/blackwhite' }">黑 白</div>
+      <div class="go" @click="$router.push('/cute')" :class="{ isActive: $route.path == '/cute' }">可 爱</div>
+      <div class="go" @click="$router.push('/waterfall')" :class="{ isActive: $route.path == '/waterfall' }">广 场</div>
+    </div>
+    <div class="trigger" @click="isCollapsed = !isCollapsed">
+      <img src="../../assets/icons/Left pink.png" style="width: 48px;
+  height: 48px;" :class="{ iconRight: isCollapsed }">
+    </div>
   </div>
 </template>
 
 <style scoped lang="less">
-.panel {
-  height: 300px;
-  width: 100px;
+.big-panel {
   position: fixed;
   z-index: 10;
   top: 50%;
   left: 0;
-  background-color: blanchedalmond;
-  border-radius: 0 20px 20px 0;
-  border: 1px solid black;
+  display: flex;
+  align-items: center;
 
-  .go {
-    height: 100px;
-    border-bottom: 1px solid black;
+  .trigger {
+    position: relative;
+    cursor: pointer;
+    top: 40%;
+    right: 20px;
+    // left: 0px;
+
+    .iconRight {
+      transform: translateX(100%);
+      transform: rotateY(-180deg);
+      transition: transform 0.2s;
+
+    }
+
+
   }
 
-  .go:last-child {
-    border-bottom: none;
+  .panel {
+    // height: 300px;
+    width: 100px;
+
+    background-color: #fff;
+    border-radius: 0 20px 20px 0;
+    border: 1px solid black;
+
+
+    .go {
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      font-weight: 600;
+      color: #333333;
+      border-bottom: 1px solid black;
+
+
+    }
+
+    .go:first-child {
+      border-radius: 0 20px 0 0;
+    }
+
+    .go:last-child {
+      border-radius: 0 0 20px 0;
+      border-bottom: none;
+    }
+
+    .isActive {
+      background-color: #5955af;
+      color: #fff;
+    }
+
   }
 }
 </style>

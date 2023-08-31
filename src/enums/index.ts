@@ -13,7 +13,8 @@ export const enum Locale {
 // 小零件
 
 export enum WidgetType {
-  Face = 'face'
+  Face = 'face',
+  Ear = 'ear'
 }
 
 // 脸型
@@ -21,3 +22,23 @@ export enum WidgetType {
 export enum FaceShape {
   Base = 'base'
 }
+
+// 耳朵
+
+export enum EarShape {
+  Attached = 'attached',
+  Detached = 'detached'
+}
+
+export type WidgetShape =
+  | FaceShape
+  // | TopsShape
+  | EarShape
+// | EarringsShape
+// | EyebrowsShape
+// | EyesShape
+// | NoseShape
+// | MouthShape
+// | BeardShape
+// | GlassesShape
+// | ClothesShape

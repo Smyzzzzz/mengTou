@@ -6,7 +6,7 @@ import {
   // type BeardShape,
   // type ClothesShape,
   // type EarringsShape,
-  // type EarShape,
+  type EarShape,
   // type EyebrowsShape,
   // type EyesShape,
   // type FaceShape,
@@ -37,7 +37,7 @@ export interface AvatarSettings {
   wrapperShape: WrapperShape[]
   // faceShape: FaceShape[]
   // topsShape: TopsShape[]
-  // earShape: EarShape[]
+  earShape: EarShape[]
   // earringsShape: EarringsShape[]
   // eyebrowsShape: EyebrowsShape[]
   // eyesShape: EyesShape[]
