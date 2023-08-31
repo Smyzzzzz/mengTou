@@ -38,7 +38,9 @@ function getWrapperShapeClassName() {
   <div ref="avatarRef" class="vue-color-avatar" style="width: 280px;
   height: 280px;" :class="getWrapperShapeClassName()">
     <Background :color="avatarOption.background.color" />
-
+    <!-- png -->
+    <div class="avatar-payload"></div>
+    <!--  -->
     <!-- 解析文件用的 -->
     <!-- <div class="avatar-payload" v-html="svgContent" /> -->
   </div>

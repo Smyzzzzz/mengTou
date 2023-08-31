@@ -28,12 +28,11 @@
       </SectionWrapper>
 
       <SectionWrapper v-for="s in sections" :key="s.widgetType" :title="t(`widgetType.${s.widgetType}`)">
-        <details v-if="s.widgetType === WidgetType.Tops ||
-          s.widgetType === WidgetType.Face ||
-          s.widgetType === WidgetType.Clothes
+        <!--  -->
+        <details v-if="s.widgetType === WidgetType.Face
           " class="color-picker" :open="s.widgetType === WidgetType.Face">
           <summary class="color">{{ t('label.colors') }}</summary>
-          <ul class="color-list">
+          <!-- <ul class="color-list">
             <li v-for="fillColor in SETTINGS[
               s.widgetType === WidgetType.Face ? 'skinColors' : 'commonColors'
             ]" :key="fillColor" class="color-list__item" @click="setWidgetColor(s.widgetType, fillColor)">
@@ -41,7 +40,7 @@
                 active: fillColor === getWidgetColor(s.widgetType),
               }" />
             </li>
-          </ul>
+          </ul> -->
         </details>
 
         <ul class="widget-list">
@@ -49,6 +48,7 @@
             selected:
               it.widgetShape === avatarOption.widgets?.[s.widgetType]?.shape,
           }" @click="switchWidget(s.widgetType, it.widgetShape)" v-html="it.svgRaw" />
+          <!--  -->
         </ul>
       </SectionWrapper>
     </div>
@@ -81,7 +81,7 @@ const [avatarOption, setAvatarOption] = useAvatarOption()
 const sectionList = reactive(Object.values(WidgetType))
 const sections = ref<
   {
-    // widgetType: WidgetType
+    widgetType: WidgetType
     widgetList: {
       widgetType: WidgetType
       widgetShape: WidgetShape

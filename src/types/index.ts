@@ -18,6 +18,26 @@ import {
   type WrapperShape
 } from '../enums'
 
+interface Widget<Shape> {
+  shape: Shape | None
+  zIndex?: number
+  fillColor?: string
+  strokeColor?: string
+}
+
+type AvatarWidgets = {
+  // face: Widget<FaceShape>
+  // tops: Widget<TopsShape>
+  ear: Widget<EarShape>
+  // earrings: Widget<EarringsShape>
+  // eyebrows: Widget<EyebrowsShape>
+  // glasses: Widget<GlassesShape>
+  // eyes: Widget<EyesShape>
+  // nose: Widget<NoseShape>
+  // mouth: Widget<MouthShape>
+  // beard: Widget<BeardShape>
+  // clothes: Widget<ClothesShape>
+}
 // 规定背景颜色
 export interface AvatarOption {
   // gender?: Gender
@@ -28,7 +48,7 @@ export interface AvatarOption {
     color: string
   }
 
-  // widgets: Partial<AvatarWidgets>
+  widgets: Partial<AvatarWidgets>
 }
 
 export interface AvatarSettings {
