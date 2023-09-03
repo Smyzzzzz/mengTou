@@ -35,29 +35,29 @@ export const useStore = defineStore('store', {
       }
     },
 
-    // [UNDO]() {
-    //   if (this.history.past.length > 0) {
-    //     const previous = this.history.past[this.history.past.length - 1]
-    //     const newPast = this.history.past.slice(0, this.history.past.length - 1)
-    //     this.history = {
-    //       past: newPast,
-    //       present: previous,
-    //       future: [this.history.present, ...this.history.future]
-    //     }
-    //   }
-    // },
+    [UNDO]() {
+      if (this.history.past.length > 0) {
+        const previous = this.history.past[this.history.past.length - 1]
+        const newPast = this.history.past.slice(0, this.history.past.length - 1)
+        this.history = {
+          past: newPast,
+          present: previous,
+          future: [this.history.present, ...this.history.future]
+        }
+      }
+    },
 
-    // [REDO]() {
-    //   if (this.history.future.length > 0) {
-    //     const next = this.history.future[0]
-    //     const newFuture = this.history.future.slice(1)
-    //     this.history = {
-    //       past: [...this.history.past, this.history.present],
-    //       present: next,
-    //       future: newFuture
-    //     }
-    //   }
-    // },
+    [REDO]() {
+      if (this.history.future.length > 0) {
+        const next = this.history.future[0]
+        const newFuture = this.history.future.slice(1)
+        this.history = {
+          past: [...this.history.past, this.history.present],
+          present: next,
+          future: newFuture
+        }
+      }
+    },
 
     [SET_SIDER_STATUS](collapsed: boolean) {
       if (collapsed !== this.isSiderCollapsed) {

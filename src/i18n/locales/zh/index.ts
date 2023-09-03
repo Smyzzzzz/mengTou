@@ -1,4 +1,4 @@
-// import { WidgetType } from '@/enums'
+import { WidgetType } from '@/enums'
 
 export default {
   action: {
@@ -19,19 +19,19 @@ export default {
     backgroundColor: '背景颜色',
     colors: '颜色'
   },
-  // widgetType: {
-  //   [WidgetType.Face]: '脸蛋',
-  //   [WidgetType.Tops]: '头发 / 头饰',
-  //   [WidgetType.Ear]: '耳朵',
-  //   [WidgetType.Earrings]: '耳环',
-  //   [WidgetType.Eyebrows]: '眉毛',
-  //   [WidgetType.Eyes]: '眼睛',
-  //   [WidgetType.Nose]: '鼻子',
-  //   [WidgetType.Glasses]: '眼镜',
-  //   [WidgetType.Mouth]: '嘴巴',
-  //   [WidgetType.Beard]: '胡子',
-  //   [WidgetType.Clothes]: '衣着',
-  // },
+  widgetType: {
+    [WidgetType.Face]: '脸蛋',
+    [WidgetType.Tops]: '头发 / 头饰',
+    [WidgetType.Ear]: '耳朵',
+    [WidgetType.Earrings]: '耳环',
+    [WidgetType.Eyebrows]: '眉毛',
+    [WidgetType.Eyes]: '眼睛',
+    [WidgetType.Nose]: '鼻子',
+    [WidgetType.Glasses]: '眼镜',
+    [WidgetType.Mouth]: '嘴巴',
+    [WidgetType.Beard]: '胡子',
+    [WidgetType.Clothes]: '衣着'
+  },
   wrapperShape: {
     circle: '圆形',
     square: '方形',

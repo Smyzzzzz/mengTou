@@ -1,17 +1,7 @@
-import // type EarringsShape,
-// type GlassesShape,
-// BeardShape,
-// Gender,
-// TopsShape,
-'@/enums'
+import { type EarringsShape, type GlassesShape, BeardShape, Gender, TopsShape } from '@/enums'
 import type { AvatarOption, None } from '@/types'
 
-import {
-  //AVATAR_LAYER,
-  NONE,
-  SETTINGS,
-  SPECIAL_AVATARS
-} from './constant'
+import { AVATAR_LAYER, NONE, SETTINGS, SPECIAL_AVATARS } from './constant'
 
 /**
  * Get a random value from an array.
@@ -43,100 +33,94 @@ export function getRandomAvatarOption(
   presetOption: Partial<AvatarOption> = {},
   useOption: Partial<AvatarOption> = {}
 ): AvatarOption {
-  // const gender = getRandomValue(SETTINGS.gender)
+  const gender = getRandomValue(SETTINGS.gender)
+  const beardList: BeardShape[] = []
+  let topList: TopsShape[] = [TopsShape.Danny, TopsShape.Wave, TopsShape.Pixie]
 
-  // const beardList: BeardShape[] = []
-  // let topList: TopsShape[] = [TopsShape.Danny, TopsShape.Wave, TopsShape.Pixie]
+  if (gender === Gender.Male) {
+    beardList.push(BeardShape.Scruff)
+    topList = SETTINGS.topsShape.filter((shape) => !topList.includes(shape))
+  }
 
-  // if (gender === Gender.Male) {
-  //   beardList.push(BeardShape.Scruff)
-  //   topList = SETTINGS.topsShape.filter((shape) => !topList.includes(shape))
-  // }
+  const beardShape = getRandomValue<BeardShape | None>(beardList, {
+    usually: [NONE]
+  })
 
-  // const beardShape = getRandomValue<BeardShape | None>(beardList, {
-  //   usually: [NONE],
-  // })
-
-  // const hairShape = getRandomValue(topList, {
-  //   avoid: [useOption.widgets?.tops?.shape],
-  // })
-  // const hairColor = getRandomFillColor()
+  const hairShape = getRandomValue(topList, {
+    avoid: [useOption.widgets?.tops?.shape]
+  })
+  const hairColor = getRandomFillColor()
 
   const avatarOption: AvatarOption = {
-    // gender,
+    gender,
 
     wrapperShape: presetOption?.wrapperShape || getRandomValue(SETTINGS.wrapperShape),
 
     background: {
       color: getRandomValue(SETTINGS.backgroundColor, {
-        avoid: [
-          useOption.background?.color
-
-          // (hairShape === TopsShape.Punk || hairShape === TopsShape.Fonze) &&
-          //   hairColor, // Handle special cases and prevent color conflicts.
-        ]
+        avoid: [useOption.background?.color]
       })
+    },
+
+    widgets: {
+      face: {
+        shape: getRandomValue(SETTINGS.faceShape),
+        fillColor: getRandomFillColor(SETTINGS.skinColors)
+      },
+      tops: {
+        shape: hairShape,
+        fillColor: hairColor
+      },
+      ear: {
+        shape: getRandomValue(SETTINGS.earShape, {
+          avoid: [useOption.widgets?.ear?.shape]
+        })
+      },
+      earrings: {
+        shape: getRandomValue<EarringsShape | None>(SETTINGS.earringsShape, {
+          usually: [NONE]
+        })
+      },
+      eyebrows: {
+        shape: getRandomValue(SETTINGS.eyebrowsShape, {
+          avoid: [useOption.widgets?.eyebrows?.shape]
+        })
+      },
+      eyes: {
+        shape: getRandomValue(SETTINGS.eyesShape, {
+          avoid: [useOption.widgets?.eyes?.shape]
+        })
+      },
+      nose: {
+        shape: getRandomValue(SETTINGS.noseShape, {
+          avoid: [useOption.widgets?.nose?.shape]
+        })
+      },
+      glasses: {
+        shape: getRandomValue<GlassesShape | None>(SETTINGS.glassesShape, {
+          usually: [NONE]
+        })
+      },
+      mouth: {
+        shape: getRandomValue(SETTINGS.mouthShape, {
+          avoid: [useOption.widgets?.mouth?.shape]
+        })
+      },
+      beard: {
+        shape: beardShape,
+
+        // HACK:
+        ...(beardShape === BeardShape.Scruff
+          ? { zIndex: AVATAR_LAYER['mouth'].zIndex - 1 }
+          : undefined)
+      },
+      clothes: {
+        shape: getRandomValue(SETTINGS.clothesShape, {
+          avoid: [useOption.widgets?.clothes?.shape]
+        }),
+        fillColor: getRandomFillColor()
+      }
     }
-
-    // widgets: {
-    //   face: {
-    //     shape: getRandomValue(SETTINGS.faceShape),
-    //     fillColor: getRandomFillColor(SETTINGS.skinColors),
-    //   },
-    //   tops: {
-    //     shape: hairShape,
-    //     fillColor: hairColor,
-    //   },
-    //   ear: {
-    //     shape: getRandomValue(SETTINGS.earShape, {
-    //       avoid: [useOption.widgets?.ear?.shape],
-    //     }),
-    //   },
-    //   earrings: {
-    //     shape: getRandomValue<EarringsShape | None>(SETTINGS.earringsShape, {
-    //       usually: [NONE],
-    //     }),
-    //   },
-    //   eyebrows: {
-    //     shape: getRandomValue(SETTINGS.eyebrowsShape, {
-    //       avoid: [useOption.widgets?.eyebrows?.shape],
-    //     }),
-    //   },
-    //   eyes: {
-    //     shape: getRandomValue(SETTINGS.eyesShape, {
-    //       avoid: [useOption.widgets?.eyes?.shape],
-    //     }),
-    //   },
-    //   nose: {
-    //     shape: getRandomValue(SETTINGS.noseShape, {
-    //       avoid: [useOption.widgets?.nose?.shape],
-    //     }),
-    //   },
-    //   glasses: {
-    //     shape: getRandomValue<GlassesShape | None>(SETTINGS.glassesShape, {
-    //       usually: [NONE],
-    //     }),
-    //   },
-    //   mouth: {
-    //     shape: getRandomValue(SETTINGS.mouthShape, {
-    //       avoid: [useOption.widgets?.mouth?.shape],
-    //     }),
-    //   },
-    //   beard: {
-    //     shape: beardShape,
-
-    //     // HACK:
-    //     ...(beardShape === BeardShape.Scruff
-    //       ? { zIndex: AVATAR_LAYER['mouth'].zIndex - 1 }
-    //       : undefined),
-    //   },
-    //   clothes: {
-    //     shape: getRandomValue(SETTINGS.clothesShape, {
-    //       avoid: [useOption.widgets?.clothes?.shape],
-    //     }),
-    //     fillColor: getRandomFillColor(),
-    //   },
-    // },
   }
 
   return avatarOption
@@ -146,47 +130,46 @@ export function getSpecialAvatarOption(): AvatarOption {
   return SPECIAL_AVATARS[Math.floor(Math.random() * SPECIAL_AVATARS.length)]
 }
 
-// export function showConfetti() {
-//   import('canvas-confetti').then((confetti) => {
-//     const canvasEle: HTMLCanvasElement | null =
-//       document.querySelector('#confetti')
+export function showConfetti() {
+  import('canvas-confetti').then((confetti) => {
+    const canvasEle: HTMLCanvasElement | null = document.querySelector('#confetti')
 
-//     if (!canvasEle) {
-//       return
-//     }
+    if (!canvasEle) {
+      return
+    }
 
-//     const myConfetti = confetti.create(canvasEle, {
-//       resize: true,
-//       useWorker: true,
-//       disableForReducedMotion: true,
-//     })
+    const myConfetti = confetti.create(canvasEle, {
+      resize: true,
+      useWorker: true,
+      disableForReducedMotion: true
+    })
 
-//     const duration = performance.now() + 1 * 1000
+    const duration = performance.now() + 1 * 1000
 
-//     const confettiColors = ['#6967fe', '#85e9f4', '#e16984']
+    const confettiColors = ['#6967fe', '#85e9f4', '#e16984']
 
-//     void (function frame() {
-//       myConfetti({
-//         particleCount: confettiColors.length,
-//         angle: 60,
-//         spread: 55,
-//         origin: { x: 0 },
-//         colors: confettiColors,
-//       })
-//       myConfetti({
-//         particleCount: confettiColors.length,
-//         angle: 120,
-//         spread: 55,
-//         origin: { x: 1 },
-//         colors: confettiColors,
-//       })
+    void (function frame() {
+      myConfetti({
+        particleCount: confettiColors.length,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+        colors: confettiColors
+      })
+      myConfetti({
+        particleCount: confettiColors.length,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+        colors: confettiColors
+      })
 
-//       if (performance.now() < duration) {
-//         requestAnimationFrame(frame)
-//       }
-//     })()
-//   })
-// }
+      if (performance.now() < duration) {
+        requestAnimationFrame(frame)
+      }
+    })()
+  })
+}
 
 export function highlightJSON(json: string): string {
   if (!json) {

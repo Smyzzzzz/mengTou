@@ -23,12 +23,12 @@ type Data = Readonly<{
 
 const widgetData: Data = {
   [WidgetType.Face]: {
-    [FaceShape.Base]: () => import(`../assets/type1/xiao/header/head.png`)
+    [FaceShape.Base]: () => import(`../assets/widgets/face/base.svg?raw`)
   },
 
   [WidgetType.Ear]: {
-    [EarShape.Attached]: () => import(`../assets/type1/xiao/mounth/month.png`),
-    [EarShape.Detached]: () => import(`../assets/type1/xiao/mounth/month.png`)
+    [EarShape.Attached]: () => import(`../assets/widgets/ear/attached.svg?raw`),
+    [EarShape.Detached]: () => import(`../assets/widgets/ear/detached.svg?raw`)
   },
 
   [WidgetType.Eyes]: {
@@ -102,8 +102,8 @@ const previewData: Data = {
   },
 
   [WidgetType.Ear]: {
-    [EarShape.Attached]: () => import(`../assets/type1/xiao/mounth/month.png`),
-    [EarShape.Detached]: () => import(`../assets/type1/xiao/mounth/month.png`)
+    [EarShape.Attached]: () => import(`../assets/preview/ear/attached.svg?raw`),
+    [EarShape.Detached]: () => import(`../assets/preview/ear/detached.svg?raw`)
   },
 
   [WidgetType.Eyes]: {

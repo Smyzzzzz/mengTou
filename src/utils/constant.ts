@@ -1,6 +1,21 @@
 import type { AvatarOption, AvatarSettings } from '@/types'
 
-import { WrapperShape, EarShape, WidgetType } from '../enums'
+import {
+  WrapperShape,
+  EarShape,
+  WidgetType,
+  BeardShape,
+  ClothesShape,
+  EarringsShape,
+  EyebrowsShape,
+  EyesShape,
+  FaceShape,
+  Gender,
+  GlassesShape,
+  MouthShape,
+  NoseShape,
+  TopsShape
+} from '../enums'
 
 export const AVATAR_LAYER: Readonly<{
   [key in `${WidgetType}`]: { zIndex: number }
@@ -10,51 +25,51 @@ export const AVATAR_LAYER: Readonly<{
   },
   [WidgetType.Ear]: {
     zIndex: 102
+  },
+  [WidgetType.Earrings]: {
+    zIndex: 103
+  },
+  [WidgetType.Eyebrows]: {
+    zIndex: 70
+  },
+  [WidgetType.Eyes]: {
+    zIndex: 50
+  },
+  [WidgetType.Nose]: {
+    zIndex: 60
+  },
+  [WidgetType.Glasses]: {
+    zIndex: 90
+  },
+  [WidgetType.Mouth]: {
+    zIndex: 100
+  },
+  [WidgetType.Beard]: {
+    zIndex: 105
+  },
+  [WidgetType.Tops]: {
+    zIndex: 80
+  },
+  [WidgetType.Clothes]: {
+    zIndex: 110
   }
-  // [WidgetType.Earrings]: {
-  //   zIndex: 103
-  // },
-  // [WidgetType.Eyebrows]: {
-  //   zIndex: 70
-  // },
-  // [WidgetType.Eyes]: {
-  //   zIndex: 50
-  // },
-  // [WidgetType.Nose]: {
-  //   zIndex: 60
-  // },
-  // [WidgetType.Glasses]: {
-  //   zIndex: 90
-  // },
-  // [WidgetType.Mouth]: {
-  //   zIndex: 100
-  // },
-  // [WidgetType.Beard]: {
-  //   zIndex: 105
-  // },
-  // [WidgetType.Tops]: {
-  //   zIndex: 80
-  // },
-  // [WidgetType.Clothes]: {
-  //   zIndex: 110
-  // }
 }
 
 export const SETTINGS: Readonly<AvatarSettings> = {
-  // gender: [Gender.Male, Gender.Female],
+  gender: [Gender.Male, Gender.Female],
 
   wrapperShape: Object.values(WrapperShape),
-  // faceShape: Object.values(FaceShape),
-  // topsShape: Object.values(TopsShape),
+  faceShape: Object.values(FaceShape),
+  topsShape: Object.values(TopsShape),
   earShape: Object.values(EarShape),
-  // earringsShape: Object.values(EarringsShape),
-  // eyebrowsShape: Object.values(EyebrowsShape),
-  // eyesShape: Object.values(EyesShape),
-  // noseShape: Object.values(NoseShape),
-  // glassesShape: Object.values(GlassesShape),
-  // mouthShape: Object.values(MouthShape),
-  // beardShape: Object.values(BeardShape),
-  // clothesShape: Object.values(ClothesShape),
+  earringsShape: Object.values(EarringsShape),
+  eyebrowsShape: Object.values(EyebrowsShape),
+  eyesShape: Object.values(EyesShape),
+  noseShape: Object.values(NoseShape),
+  glassesShape: Object.values(GlassesShape),
+  mouthShape: Object.values(MouthShape),
+  beardShape: Object.values(BeardShape),
+  clothesShape: Object.values(ClothesShape),
 
   commonColors: [
     '#6BD9E9',
@@ -101,88 +116,88 @@ export const SPECIAL_AVATARS: Readonly<AvatarOption[]> = [
     wrapperShape: 'squircle',
     background: {
       color: 'linear-gradient(62deg, #8EC5FC, #E0C3FC)'
+    },
+    widgets: {
+      face: {
+        shape: FaceShape.Base,
+        fillColor: '#F9C9B6'
+      },
+      tops: {
+        shape: TopsShape.Pixie,
+        fillColor: '#d2eff3'
+      },
+      ear: {
+        shape: EarShape.Attached
+      },
+      earrings: {
+        shape: EarringsShape.Stud
+      },
+      eyebrows: {
+        shape: EyebrowsShape.Up
+      },
+      eyes: {
+        shape: EyesShape.Eyeshadow
+      },
+      nose: {
+        shape: NoseShape.Pointed
+      },
+      glasses: {
+        shape: NONE
+      },
+      mouth: {
+        shape: MouthShape.Laughing
+      },
+      beard: {
+        shape: NONE
+      },
+      clothes: {
+        shape: ClothesShape.Crew,
+        fillColor: '#e0ddff'
+      }
     }
-    // widgets: {
-    //   face: {
-    //     shape: FaceShape.Base,
-    //     fillColor: '#F9C9B6',
-    //   },
-    //   tops: {
-    //     shape: TopsShape.Pixie,
-    //     fillColor: '#d2eff3',
-    //   },
-    //   ear: {
-    //     shape: EarShape.Attached,
-    //   },
-    //   earrings: {
-    //     shape: EarringsShape.Stud,
-    //   },
-    //   eyebrows: {
-    //     shape: EyebrowsShape.Up,
-    //   },
-    //   eyes: {
-    //     shape: EyesShape.Eyeshadow,
-    //   },
-    //   nose: {
-    //     shape: NoseShape.Pointed,
-    //   },
-    //   glasses: {
-    //     shape: NONE,
-    //   },
-    //   mouth: {
-    //     shape: MouthShape.Laughing,
-    //   },
-    //   beard: {
-    //     shape: NONE,
-    //   },
-    //   clothes: {
-    //     shape: ClothesShape.Crew,
-    //     fillColor: '#e0ddff',
-    //   },
-    // },
   },
   {
     wrapperShape: 'squircle',
     background: {
       color: '#fd6f5d'
+    },
+    widgets: {
+      face: {
+        shape: FaceShape.Base,
+        fillColor: '#F9C9B6'
+      },
+      tops: {
+        shape: TopsShape.Clean
+      },
+      ear: {
+        shape: EarShape.Attached
+      },
+      earrings: {
+        shape: NONE
+      },
+      eyebrows: {
+        shape: EyebrowsShape.Eyelashesdown
+      },
+      eyes: {
+        shape: EyesShape.Round
+      },
+      nose: {
+        shape: NoseShape.Round
+      },
+      glasses: {
+        shape: NONE
+      },
+      mouth: {
+        shape: MouthShape.Surprised
+      },
+      beard: {
+        shape: NONE
+      },
+      clothes: {
+        shape: ClothesShape.Crew,
+        fillColor: '#f4d150'
+      }
     }
-    // widgets: {
-    //   face: {
-    //     shape: FaceShape.Base,
-    //     fillColor: '#F9C9B6',
-    //   },
-    //   tops: {
-    //     shape: TopsShape.Clean,
-    //   },
-    //   ear: {
-    //     shape: EarShape.Attached,
-    //   },
-    //   earrings: {
-    //     shape: NONE,
-    //   },
-    //   eyebrows: {
-    //     shape: EyebrowsShape.Eyelashesdown,
-    //   },
-    //   eyes: {
-    //     shape: EyesShape.Round,
-    //   },
-    //   nose: {
-    //     shape: NoseShape.Round,
-    //   },
-    //   glasses: {
-    //     shape: NONE,
-    //   },
-    //   mouth: {
-    //     shape: MouthShape.Surprised,
-    //   },
-    //   beard: {
-    //     shape: NONE,
-    //   },
-    //   clothes: {
-    //     shape: ClothesShape.Crew,
-    //     fillColor: '#f4d150',
-    //   },
-    // },
   }
 ]
 

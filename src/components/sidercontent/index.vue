@@ -1,7 +1,7 @@
 <!-- 选项栏内容 -->
 
 <template>
-  <PerfectScrollbar class="configurator-scroll">
+  <div class="configurator-scroll">
     <div class="configurator">
       <SectionWrapper :title="t('label.wrapperShape')">
         <div class="wrapper-shape">
@@ -33,26 +33,26 @@
           s.widgetType === WidgetType.Clothes
           " class="color-picker" :open="s.widgetType === WidgetType.Face">
           <summary class="color">{{ t('label.colors') }}</summary>
-          <ul class="color-list">
-            <li v-for="fillColor in SETTINGS[
+          <div class="color-list">
+            <div v-for="fillColor in SETTINGS[
               s.widgetType === WidgetType.Face ? 'skinColors' : 'commonColors'
             ]" :key="fillColor" class="color-list__item" @click="setWidgetColor(s.widgetType, fillColor)">
               <div :style="{ background: fillColor }" class="bg-color" :class="{
                 active: fillColor === getWidgetColor(s.widgetType),
               }" />
-            </li>
-          </ul>
+            </div>
+          </div>
         </details>
 
-        <ul class="widget-list">
-          <li v-for="it in s.widgetList" :key="it.widgetShape" class="list-item" :class="{
+        <div class="widget-list">
+          <div v-for="it in s.widgetList" :key="it.widgetShape" class="list-item" :class="{
             selected:
               it.widgetShape === avatarOption.widgets?.[s.widgetType]?.shape,
           }" @click="switchWidget(s.widgetType, it.widgetShape)" v-html="it.svgRaw" />
-        </ul>
+        </div>
       </SectionWrapper>
     </div>
-  </PerfectScrollbar>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -64,12 +64,13 @@ import SectionWrapper from '@/components/sidercontent/SectionWrapper.vue'
 import {
   type WidgetShape,
   type WrapperShape,
-  // BeardShape,
+  BeardShape,
   WidgetType,
 } from '../../enums'
 import useAvatarOption from '../../hooks/useAvatarOption'
 // @/utils/constant
-import { //AVATAR_LAYER, 
+import {
+  AVATAR_LAYER,
   SETTINGS
 } from '../../utils/constant'
 import { previewData } from '@/utils/dynamic-data'
@@ -81,11 +82,11 @@ const [avatarOption, setAvatarOption] = useAvatarOption()
 const sectionList = reactive(Object.values(WidgetType))
 const sections = ref<
   {
-    // widgetType: WidgetType
+    widgetType: WidgetType
     widgetList: {
       widgetType: WidgetType
       widgetShape: WidgetShape
-      // svgRaw: string
+      svgRaw: string
     }[]
   }[]
 >([])
@@ -147,56 +148,60 @@ function switchBgColor(bgColor: string) {
   }
 }
 
-// function switchWidget(widgetType: WidgetType, widgetShape: WidgetShape) {
-//   if (widgetShape && avatarOption.value.widgets?.[widgetType]) {
-//     setAvatarOption({
-//       ...avatarOption.value,
-//       widgets: {
-//         ...avatarOption.value.widgets,
-//         [widgetType]: {
-//           ...avatarOption.value.widgets?.[widgetType],
-//           shape: widgetShape,
-//           ...(widgetShape === BeardShape.Scruff
-//             ? { zIndex: AVATAR_LAYER['mouth'].zIndex - 1 }
-//             : undefined),
-//         },
-//       },
-//     })
-//   }
-// }
+function switchWidget(widgetType: WidgetType, widgetShape: WidgetShape) {
+  if (widgetShape && avatarOption.value.widgets?.[widgetType]) {
+    setAvatarOption({
+      ...avatarOption.value,
+      widgets: {
+        ...avatarOption.value.widgets,
+        [widgetType]: {
+          ...avatarOption.value.widgets?.[widgetType],
+          shape: widgetShape,
+          ...(widgetShape === BeardShape.Scruff
+            ? { zIndex: AVATAR_LAYER['mouth'].zIndex - 1 }
+            : undefined),
+        },
+      },
+    })
+  }
+}
 
-// function setWidgetColor(widgetType: WidgetType, fillColor: string) {
-//   if (avatarOption.value.widgets?.[widgetType]) {
-//     setAvatarOption({
-//       ...avatarOption.value,
-//       widgets: {
-//         ...avatarOption.value.widgets,
-//         [widgetType]: {
-//           ...avatarOption.value.widgets?.[widgetType],
-//           fillColor,
-//         },
-//       },
-//     })
-//   }
-// }
+function setWidgetColor(widgetType: WidgetType, fillColor: string) {
+  if (avatarOption.value.widgets?.[widgetType]) {
+    setAvatarOption({
+      ...avatarOption.value,
+      widgets: {
+        ...avatarOption.value.widgets,
+        [widgetType]: {
+          ...avatarOption.value.widgets?.[widgetType],
+          fillColor,
+        },
+      },
+    })
+  }
+}
 
-// function getWidgetColor(type: string) {
-//   if (
-//     type === WidgetType.Face ||
-//     type === WidgetType.Tops ||
-//     type === WidgetType.Clothes
-//   ) {
-//     return avatarOption.value.widgets[type]?.fillColor
-//   } else return ''
-// }
+function getWidgetColor(type: string) {
+  if (
+    type === WidgetType.Face ||
+    type === WidgetType.Tops ||
+    type === WidgetType.Clothes
+  ) {
+    return avatarOption.value.widgets[type]?.fillColor
+  } else return ''
+}
 </script>
 
 <style lang="scss" scoped>
 @use 'src/styles/var';
 
 .configurator-scroll {
-  width: var.$layout-sider-width;
+  border-radius: 20px 0 0 20px;
+  background-color: #f4edfc;
+  // var.$layout-sider-width
+  width: 400px;
   height: 100%;
+  overflow-y: auto;
 
   @media screen and (max-width: var.$screen-lg) {
     background-color: var.$color-configurator;
@@ -207,8 +212,7 @@ function switchBgColor(bgColor: string) {
   width: 100%;
   color: var.$color-text;
   // 
-  border-radius: 20px 0 0 20px;
-  background-color: #f4edfc;
+
 
   .wrapper-shape {
     display: flex;
@@ -345,19 +349,23 @@ function switchBgColor(bgColor: string) {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: calc(100% / 4);
-      height: 5rem;
+      width: 22%;
+      height: 67px;
+      // width: calc(100% / 6);
+      // height: 5rem;
       padding: 1rem;
       border-radius: 0.8rem;
       cursor: pointer;
       transition: background-color 0.2s;
 
       &.selected.selected {
-        background-color: lighten(var.$color-configurator, 6);
+        // lighten(var.$color-configurator, 6)
+        background-color: #dac4f4;
       }
 
       &:hover {
-        background-color: lighten(var.$color-configurator, 0);
+        // lighten(var.$color-configurator, 0)
+        background-color: #dac4f4;
       }
 
       &> :deep(svg) {

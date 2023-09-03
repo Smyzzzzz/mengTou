@@ -1,4 +1,4 @@
-// import { WidgetType } from '@/enums'
+import { WidgetType } from '@/enums'
 
 export default {
   action: {
@@ -19,19 +19,19 @@ export default {
     backgroundColor: 'Background Color',
     colors: 'colors'
   },
-  // widgetType: {
-  //   [WidgetType.Face]: 'Face',
-  //   [WidgetType.Tops]: 'Tops',
-  //   [WidgetType.Ear]: 'Ear',
-  //   [WidgetType.Earrings]: 'Earrings',
-  //   [WidgetType.Eyebrows]: 'Eyebrows',
-  //   [WidgetType.Eyes]: 'Eyes',
-  //   [WidgetType.Nose]: 'Nose',
-  //   [WidgetType.Glasses]: 'Glasses',
-  //   [WidgetType.Mouth]: 'Mouth',
-  //   [WidgetType.Beard]: 'Beard',
-  //   [WidgetType.Clothes]: 'Clothes',
-  // },
+  widgetType: {
+    [WidgetType.Face]: 'Face',
+    [WidgetType.Tops]: 'Tops',
+    [WidgetType.Ear]: 'Ear',
+    [WidgetType.Earrings]: 'Earrings',
+    [WidgetType.Eyebrows]: 'Eyebrows',
+    [WidgetType.Eyes]: 'Eyes',
+    [WidgetType.Nose]: 'Nose',
+    [WidgetType.Glasses]: 'Glasses',
+    [WidgetType.Mouth]: 'Mouth',
+    [WidgetType.Beard]: 'Beard',
+    [WidgetType.Clothes]: 'Clothes'
+  },
   wrapperShape: {
     circle: 'Circle',
     square: 'Square',
