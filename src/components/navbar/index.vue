@@ -19,7 +19,7 @@ const goNext = () => {
       <div class="go" @click="$router.push('/waterfall')" :class="{ isActive: $route.path == '/waterfall' }">广 场</div>
     </div>
     <div class="trigger" @click="isCollapsed = !isCollapsed">
-      <img src="../../assets/icons/Left pink.png" style="width: 48px;
+      <img src="../../assets/icons/leftpink.png" style="width: 48px;
   height: 48px;" :class="{ iconRight: isCollapsed }">
     </div>
   </div>

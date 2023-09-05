@@ -5,7 +5,7 @@
     <div class="trigger" @click="isCollapsed ? openSider() : closeSider()">
       <!--  -->
       <!-- <img :src="IconRight" class="icon-right" alt="arrow" /> -->
-      <img src="../../assets/icons/Left pink.png" class="icon-right" alt="arrow" style="height: 48px;width: 48px;" />
+      <img src="../../assets/icons/leftpink.png" class="icon-right" alt="arrow" style="height: 48px;width: 48px;" />
     </div>
   </aside>
 </template>

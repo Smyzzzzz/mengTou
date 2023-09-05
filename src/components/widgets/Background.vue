@@ -2,7 +2,7 @@
  该组件用于修改头像背景颜色
 !-->
 <script lang="ts" setup>
-import { type AvatarOption } from '../../../types'
+import { type AvatarOption } from '../../types'
 
 interface BackgroundProps {
   // 
