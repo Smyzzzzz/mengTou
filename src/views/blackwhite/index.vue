@@ -207,18 +207,19 @@ async function generateMultiple(count = 5 * 6) {
 
       <!-- 下方四个按钮 -->
       <div class="action-group">
-        <button type="button" class="action-btn action-randomize" @click="handleGenerate">
-          {{ t('action.randomize') }}
-        </button>
+        <div style="width: 280px;display: flex;justify-content: space-between;">
+          <button class="button" @click="handleGenerate">
+            {{ t('action.randomize') }}
+          </button>
 
-        <button type="button" class="action-btn action-download" :disabled="downloading" @click="handleDownload">
-          {{
-            downloading
-            ? `${t('action.downloading')}...`
-            : t('action.download')
-          }}
-        </button>
-
+          <button class="button" :disabled="downloading" @click="handleDownload">
+            {{
+              downloading
+              ? `${t('action.downloading')}...`
+              : t('action.download')
+            }}
+          </button>
+        </div>
         <!-- <button type="button" class="action-btn action-multiple" @click="() => generateMultiple()">
           {{ t('action.downloadMultiple') }}
         </button> -->
@@ -247,47 +248,30 @@ async function generateMultiple(count = 5 * 6) {
 @use 'src/styles/var';
 
 .touxiang {
+  padding-top: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-// @supports (filter: blur(4rem)) or (-webkit-filter: blur(4rem)) or (-moz-filter: blur(4rem)) {
-//   .gradient-bg {
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
+.action-group {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-//     @mixin gradient-style($color) {
-//       position: absolute;
-//       width: 100vh;
-//       height: 100vh;
-//       background-image: radial-gradient(rgba($color, 0.8) 20%,
-//           rgba($color, 0.6) 40%,
-//           rgba($color, 0.4) 60%,
-//           rgba($color, 0.2) 80%,
-//           transparent 100%);
-//       border-radius: 50%;
-//       opacity: 0.2;
-//       filter: blur(4rem);
-//     }
-
-//     .gradient-top {
-//       @include gradient-style(var.$color-secondary);
-
-//       top: -50%;
-//       right: -20%;
-//     }
-
-//     .gradient-bottom {
-//       @include gradient-style(var.$color-accent);
-
-//       bottom: -50%;
-//       left: -20%;
-//     }
-//   }
-// }
+  // width: 280px;
+  .button {
+    height: 50px;
+    width: 120px;
+    background-color: #dac4f4;
+    border: none;
+    border-radius: 20px;
+    //#666
+    color: hsl(210, 5%, 64%);
+    font-weight: 600;
+    font-size: 18px;
+  }
+}
 </style>
 

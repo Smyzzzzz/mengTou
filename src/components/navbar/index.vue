@@ -14,8 +14,8 @@ const goNext = () => {
     <!--  -->
     <div class="panel" v-if="!isCollapsed">
       <!-- <div></div> -->
-      <div class="go" @click="goNext" :class="{ isActive: $route.path == '/blackwhite' }">黑 白</div>
-      <div class="go" @click="$router.push('/cute')" :class="{ isActive: $route.path == '/cute' }">可 爱</div>
+      <div class="go" @click="goNext" :class="{ isActive: $route.path == '/blackwhite' }">头 像 DIY</div>
+      <div class="go" @click="$router.push('/cute')" :class="{ isActive: $route.path == '/cute' }"> PNG 头 像</div>
       <div class="go" @click="$router.push('/waterfall')" :class="{ isActive: $route.path == '/waterfall' }">广 场</div>
     </div>
     <div class="trigger" @click="isCollapsed = !isCollapsed">
@@ -53,7 +53,7 @@ const goNext = () => {
 
   .panel {
     // height: 300px;
-    width: 100px;
+    width: 120px;
 
     background-color: #fff;
     border-radius: 0 20px 20px 0;

@@ -3,7 +3,7 @@ import virtualWaterfallContainer from "./virtual-waterfall-container.vue";
 </script>
 
 <template>
-  <div>waterfall</div>
+  <!-- <div>waterfall</div> -->
   <div class="waterfall-container">
     <virtual-waterfall-container />
   </div>
@@ -12,7 +12,7 @@ import virtualWaterfallContainer from "./virtual-waterfall-container.vue";
 <style scoped lang="less">
 .waterfall-container {
   width: 100%;
-  height: 80vh;
+  height: 100vh;
 }
 </style>
 
