@@ -41,7 +41,7 @@ type AvatarWidgets = {
 
 // 规定背景颜色
 export interface AvatarOption {
-  // gender?: Gender
+  gender?: Gender
 
   wrapperShape?: `${WrapperShape}`
 
@@ -53,7 +53,7 @@ export interface AvatarOption {
 }
 
 export interface AvatarSettings {
-  // gender: [Gender, Gender]
+  gender: [Gender, Gender]
 
   wrapperShape: WrapperShape[]
   faceShape: FaceShape[]

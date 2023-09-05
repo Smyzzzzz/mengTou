@@ -11,9 +11,9 @@
 </template>
 
 <script lang="ts" setup>
-import IconRight from '@/assets/icons/icon-right.svg'
+// import IconRight from '@/assets/icons/icon-right.svg'
 import { useSider } from '@/hooks'
-import { url } from 'inspector';
+// import { url } from 'inspector';
 
 const { isCollapsed, openSider, closeSider } = useSider()
 </script>
